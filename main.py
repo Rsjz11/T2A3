@@ -15,10 +15,10 @@ last_updated = results['data']['last_updated']
 global_cap = results['data']['quotes']['USD']['total_market_cap']
 global_volume = results['data']['quotes']['USD']['total_volume_24h']
 
-active_currencies_string = '{;,}'.format(active_currencies)
-active_markets_string = '{;,}'.format(active_markets)
-global_cap_string = '{;,}'.format(global_cap)
-global_volume_string = '{;,}'.format(global_volume)
+active_currencies_string = '{:,}'.format(active_currencies)
+active_markets_string = '{:,}'.format(active_markets)
+global_cap_string = '{:,}'.format(global_cap)
+global_volume_string = '{:,}'.format(global_volume)
 
 print()
 print('There are currently ' + active_currencies_string + ' active cryptocurrencies and ' + active_markets_string + ' active markets.')
