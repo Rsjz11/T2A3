@@ -9,8 +9,11 @@ global_url = 'https://api.alternative.me/v2/global/?convert=' + currency
 request = requests.get(global_url)
 results = request.json()
 
+# Below, code used initially to make the API request more readable
 #print(json.dumps(results, sort_keys=True, indent=4))
 
+
+# This section involves json navigation
 active_currencies = results['data']['active_cryptocurrencies']
 active_markets = results['data']['active_markets']
 bitcoin_percentage = results['data']['bitcoin_percentage_of_market_cap']
@@ -18,6 +21,7 @@ last_updated = results['data']['last_updated']
 global_cap = results['data']['quotes'][currency]['total_market_cap']
 global_volume = results['data']['quotes'][currency]['total_volume_24h']
 
+# This section adds commas to the variables expressed in numbers
 active_currencies_string = '{:,}'.format(active_currencies)
 active_markets_string = '{:,}'.format(active_markets)
 global_cap_string = '{:,}'.format(global_cap)
