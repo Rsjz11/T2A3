@@ -17,7 +17,7 @@ for currency in data:
     url = currency['id']
     ticker_url_pairs[symbol] = url
 
-print(ticker_url_pairs)
+# print(ticker_url_pairs)
 # The above converts the list to a ticker symbol which then can be used to specify cryptocurrencies
 
 while True:
@@ -31,7 +31,7 @@ while True:
     request = requests.get(ticker_url)
     results = request.json()
 
-    print(json.dumps(results, sort_keys=True, indent=4))
+   # print(json.dumps(results, sort_keys=True, indent=4))
 
     currency = results['data'][0]
     rank = currency['rank']
@@ -63,10 +63,10 @@ while True:
     print('Week_change: \t\t' + str(week_change) + '%')
     print('Total supply: \t\t' + total_supply_string)
     print('Circulating supply: \t' + circulating_supply_string)
-    print('Percentage of coins in circulation: ' + str(int(circulating_supply/total_supply)))
+    print('Percentage of coins in circulation: ' + str(int(circulating_supply/total_supply * 100)))
     print()
 
     choice == input('Again? (y/n): ')
 
-    if choice == 'n':
+    if not choice == 'y':
         break
