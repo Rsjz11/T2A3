@@ -10,7 +10,7 @@ convert = 'USD'
 listing_url = 'https://api.alternative.me/v2/listings/?convert=' + convert 
 url_end = '?structure=array&convert=' + convert 
 
-request = requests.get(Listings_url)
+request = requests.get(listing_url)
 results = request.json()
 data = results['data']
 
@@ -29,7 +29,7 @@ last_updated = 0
 
 table = PrettyTable(['Asset', 'Amount Owned', convert + 'Value', 'Price', '1h', '24h', '7d'])
 
-with open("portfolio.txt") as inp:
+with open("portfolio.md") as inp:
     for line in inp:
         ticker, amount = line.split()
         ticker = ticker.upper()
@@ -71,12 +71,13 @@ with open("portfolio.txt") as inp:
 
         value_string = '{:,}'.format(round(value,2))
 
-        table.add.row{[name + ' (' + symbol + ')',
+        table.add_row([name + ' (' + symbol + ')',
+            amount,
             '$' + value_string,
             '$' + str(price),
             str(hour_change),
             str(day_change),
-            str(week_change)']}
+            str(week_change)])
 
 print(table)
 print()
@@ -84,7 +85,7 @@ print()
 portfolio_value_string = '{:,}'.format(round(portfolio_value,2))
 last_updated_string = datetime.fromtimestamp(last_updated).strftime('%d %B, %Y at %I:%M%p')
 
-print('Total Portfolio Value: ' + portfolio_value_string)
+print('Total Portfolio Value: ' + Back.GREEN + '$' + portfolio_value_string + Style_RESET_ALL)
 print()
 print('API Results Last Updated on' + last_updated_string)
 print()
