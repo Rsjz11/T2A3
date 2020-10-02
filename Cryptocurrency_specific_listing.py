@@ -9,7 +9,7 @@ start = 1
 sort = 'id'
 convert = 'USD'
 
-choice = input('DO you wish to enter specific parameters? (y/n): ')
+choice = input('Do you wish to enter specific parameters? (y/n): ')
 
 if choice == 'y':
     limit = input('What is the custom limit?: ')
@@ -17,4 +17,9 @@ if choice == 'y':
     sort = input('What do you want to sort by?: ')
     convert = input('What is your local currency?: ')
 
-ticker_url += '&limit=' + limit + '&sort=' + sort + '&start=' + start + '&convert=' + convert  
+ticker_url += '&limit=' + limit + '&start=' + start + '&sort=' + sort + '&convert=' + convert  
+
+request = requests.get(ticker_url)
+results = request.json()
+
+print(json.dumps(results, sort_keys=True, indent=4))
