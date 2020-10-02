@@ -1,10 +1,8 @@
 import json
 import requests
 from datetime import datetime
-import classes_and_functions
 
-# def Global_listing():                       #classes_and_functions.accepted_currency()   
-currency = 'USD'
+currency = 'JPY'
 
 global_url = 'https://api.alternative.me/v2/global/?convert=' + currency
 
@@ -12,7 +10,7 @@ request = requests.get(global_url)
 results = request.json()
 
 # Below, code used initially to make the API request more readable
-    #print(json.dumps(results, sort_keys=True, indent=4))
+#print(json.dumps(results, sort_keys=True, indent=4))
 
 
 # This section involves json navigation
@@ -39,4 +37,4 @@ print('Bitcoin\'s total percentage of the total global cap is ' + str(bitcoin_pe
 print()
 print('This information was last updated on ' + last_updated_string + '.')
 
-    # The function of this file is to report the number of active cryptocurrencies, active markets, global cap, 24h volume and the % of BTC dominance
+# The function of this file is to report the number of active cryptocurrencies, active markets, global cap, 24h volume and the % of BTC dominance

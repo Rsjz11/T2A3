@@ -16,8 +16,4 @@ for currency in data:
     symbol = currency['symbol']
     print(str(rank) + ': ' + name + ' (' + symbol + ')')
 
-def first_100():
-    if input() is <= 100:
-        print(data)
-
 # This file when executed, lists the entire listing of cryptocurrencies up to 3799 

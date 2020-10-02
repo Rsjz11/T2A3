@@ -11,26 +11,23 @@ while True:
     convert = 'USD'
 
     choice = input('Do you wish to enter specific parameters? (y/n): ')
-    if choice == input('exit'):
-        break
 
     if choice == 'y':
         limit = input('What is the custom limit?: ')
-        start = input('What is the custom start number?: List starts from 0 ')
-        sort = input('What do you want to sort by (rank)?: ')
-        convert = input('What is your local currency?:  ')
-        convert = convert.upper()
+        start = input('What is the custom start number?: ')
+        sort = input('What do you want to sort by?: ')
+        convert = input('What is your local currency?: ')
 
     ticker_url += '&limit=' + str(limit) + '&start=' + str(start) + '&sort=' + sort + '&convert=' + convert  
 
     request = requests.get(ticker_url)
     results = request.json()
 
-  # print(json.dumps(results, sort_keys=True, indent=4))
+   # print(json.dumps(results, sort_keys=True, indent=4))
 
     data = results['data']
 
-  #  print()
+    # print()
     for currency in data:
         rank = currency['rank']
         name = currency['name']
@@ -64,12 +61,7 @@ while True:
         print('Percentage of coins in circulation: ' + str(int(circulating_supply/total_supply * 100)))
         print()
 
-    if choice == 'n':
-        break
+        choice == input('Again? (y/n): ')
 
-    choice == input('Again? (y/n): ')
-
-    
-
-
-    
+        if not choice == 'y':
+            break
