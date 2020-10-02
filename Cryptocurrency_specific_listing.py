@@ -1,61 +1,67 @@
 import json
 import requests
 
-# array > dictionary to loop the requests
-ticker_url = 'https://api.alternative.me/v2/ticker/?structure=array'
+while True: 
 
-limit = 100
-start = 1
-sort = 'id'
-convert = 'USD'
+    ticker_url = 'https://api.alternative.me/v2/ticker/?structure=array'
 
-choice = input('Do you wish to enter specific parameters? (y/n): ')
+    limit = 100
+    start = 1
+    sort = 'rank'
+    convert = 'USD'
 
-if choice == 'y':
-    limit = input('What is the custom limit?: ')
-    start = input('What is the custom start number?: ')
-    sort = input('What do you want to sort by?: ')
-    convert = input('What is your local currency?: ')
+    choice = input('Do you wish to enter specific parameters? (y/n): ')
 
-ticker_url += '&limit=' + str(limit) + '&start=' + str(start) + '&sort=' + sort + '&convert=' + convert  
+    if choice == 'y':
+        limit = input('What is the custom limit?: ')
+        start = input('What is the custom start number?: ')
+        sort = input('What do you want to sort by?: ')
+        convert = input('What is your local currency?: ')
 
-request = requests.get(ticker_url)
-results = request.json()
+    ticker_url += '&limit=' + str(limit) + '&start=' + str(start) + '&sort=' + sort + '&convert=' + convert  
 
-print(json.dumps(results, sort_keys=True, indent=4))
+    request = requests.get(ticker_url)
+    results = request.json()
 
-data = results['data']
+    print(json.dumps(results, sort_keys=True, indent=4))
 
-print()
-for currency in data:
-    rank = currency['rank']
-    name = currency['name']
-    symbol = currency['symbol']
+    data = results['data']
 
-    circulating_supply = int(currency['circulating_supply'])
-    total_supply = int(currency['total_supply'])
-
-    quotes = currency['quotes'][convert]
-    market_cap = quotes['market_cap']
-    hour_change = quotes['percent_change_1h']
-    day_change = quotes['percent_change_24h']
-    week_change = quotes['percent_change_7d']
-    price = quotes['price']
-    volume = quotes['volume_24h']
-
-    volume_string = '{:,}'.format(volume)
-    market_cap_string = '{:,}'.format(market_cap)      
-    circulating_supply_string = '{:,}'.format(circulating_supply)
-    total_supply_string = '{:,}'.format(total_supply)
-
-    print(str(rank) + ': ' + name + ' (' + symbol + ' )')
-    print('Market cap: ' + market_cap_string)
-    print('Price: $' + str(price))
-    print('24h Volume: $' + volume_string)
-    print('Hour change: ' + str(hour_change) + '%')
-    print('Day change: ' + str(day_change) + '%')
-    print('Week_change: ' + str(week_change) + '%')
-    print('Total supply: ' + total_supply_string)
-    print('Circulating supply: ' + circulating_supply_string)
-    print('Percentage of coins in circulation: ' + str(int(circulating_supply/ total_supply)))
     print()
+    for currency in data:
+        rank = currency['rank']
+        name = currency['name']
+        symbol = currency['symbol']
+
+        circulating_supply = int(currency['circulating_supply'])
+        total_supply = int(currency['total_supply'])
+
+        quotes = currency['quotes'][convert]
+        market_cap = quotes['market_cap']
+        hour_change = quotes['percent_change_1h']
+        day_change = quotes['percent_change_24h']
+        week_change = quotes['percent_change_7d']
+        price = quotes['price']
+        volume = quotes['volume_24h']
+
+        volume_string = '{:,}'.format(volume)
+        market_cap_string = '{:,}'.format(market_cap)      
+        circulating_supply_string = '{:,}'.format(circulating_supply)
+        total_supply_string = '{:,}'.format(total_supply)
+
+        print(str(rank) + ': ' + name + ' (' + symbol + ' )')
+        print('Market cap: \t\t' + market_cap_string)
+        print('Price: \t\t\t$' + str(price))
+        print('24h Volume: \t\t$' + volume_string)
+        print('Hour change: \t\t' + str(hour_change) + '%')
+        print('Day change: \t\t' + str(day_change) + '%')
+        print('Week_change: \t\t' + str(week_change) + '%')
+        print('Total supply: \t\t' + total_supply_string)
+        print('Circulating supply: \t' + circulating_supply_string)
+        print('Percentage of coins in circulation: ' + str(int(circulating_supply/total_supply)))
+        print()
+
+    choice == input('Again? (y/n): ')
+
+    if choice == 'n':
+        break
