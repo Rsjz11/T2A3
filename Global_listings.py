@@ -1,7 +1,6 @@
 import json
 import requests
 from datetime import datetime
-import classes_and_functions
 
 # def Global_listing():                       #classes_and_functions.accepted_currency()   
 currency = 'USD'
