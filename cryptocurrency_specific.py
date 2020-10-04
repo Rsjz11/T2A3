@@ -67,6 +67,7 @@ while True:
     print()
 
     choice == input('Again? (y/n): ')
-
-    if not choice == 'y':
+    if choice == 'y':
+        continue
+    elif choice == 'n':
         break
