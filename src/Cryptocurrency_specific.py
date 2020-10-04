@@ -1,37 +1,40 @@
-import json
 import requests
+import json
 
-while True: 
+convert = 'USD'
 
-    ticker_url = 'https://api.alternative.me/v2/ticker/?structure=array'
+listing_url = 'https://api.alternative.me/v2/listings/'
+url_end = '?structure=array&convert=' + convert
 
-    limit = 100
-    start = 1
-    sort = 'rank'
-    convert = 'USD'
+request = requests.get(listing_url)
+results = request.json()
 
-    choice = input('Do you wish to enter specific parameters? By choosing no, you will receive up to 85 different currencies (y/n): ')
-    if choice == 'exit':
-        break
+data = results['data']
 
-    if choice == 'y':
-        limit = input('What is the custom limit?: ')
-        start = input('What is the custom start number?: List starts from 0 ')
-        sort = input('What do you want to sort by (rank)?: ')
-        convert = input('What is your local currency?:  ')
-        convert = convert.upper()
+ticker_url_pairs = {}
+for currency in data:
+    symbol = currency['symbol']
+    url = currency['id']
+    ticker_url_pairs[symbol] = url
 
-    ticker_url += '&limit=' + str(limit) + '&start=' + str(start) + '&sort=' + sort + '&convert=' + convert  
+# print(ticker_url_pairs)
+# The above converts the list to a ticker symbol which then can be used to specify cryptocurrencies
 
-    request = requests.get(ticker_url)
-    results = request.json()
+def crypto_specific():
+    while True:
 
-  # print(json.dumps(results, sort_keys=True, indent=4))
+        print()
+        choice = input("Enter the ticker symbol of the cryptocurrency: ")
+        choice = choice.upper()
 
-    data = results['data']
+        ticker_url = 'https://api.alternative.me/v2/ticker/' + str(ticker_url_pairs[choice]) + '/' + url_end 
 
-  #  print()
-    for currency in data:
+        request = requests.get(ticker_url)
+        results = request.json()
+
+    # print(json.dumps(results, sort_keys=True, indent=4))
+
+        currency = results['data'][0]
         rank = currency['rank']
         name = currency['name']
         symbol = currency['symbol']
@@ -64,14 +67,9 @@ while True:
         print('Percentage of coins in circulation: ' + str(int(circulating_supply/total_supply * 100)))
         print()
 
-    choice == input('Again? (y/n): ')    
-
-    if choice == 'n':
-        break
-
-    
-
-    
-
-
-    
+        choice = input('Again? (y/n): ')
+        if choice == 'y':
+            continue
+        if choice == 'n':
+            break
+            

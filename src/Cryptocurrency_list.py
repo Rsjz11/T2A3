@@ -10,10 +10,11 @@ results = request.json()
 
 data = results['data']
 
-for currency in data: 
-    rank = currency['id']  
-    name = currency['name']
-    symbol = currency['symbol']
-    print(str(rank) + ': ' + name + ' (' + symbol + ')')
+def crypto_list():
+    for currency in data: 
+        rank = currency['id']  
+        name = currency['name']
+        symbol = currency['symbol']
+        print(str(rank) + ': ' + name + ' (' + symbol + ')')
 
 # This file when executed, lists the entire listing of cryptocurrencies up to 3799 
