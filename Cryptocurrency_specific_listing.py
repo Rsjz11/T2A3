@@ -10,8 +10,8 @@ while True:
     sort = 'rank'
     convert = 'USD'
 
-    choice = input('Do you wish to enter specific parameters? (y/n): ')
-    if choice == input('exit'):
+    choice = input('Do you wish to enter specific parameters? By choosing no, you will receive up to 85 different currencies (y/n): ')
+    if choice == 'exit':
         break
 
     if choice == 'y':
@@ -64,10 +64,12 @@ while True:
         print('Percentage of coins in circulation: ' + str(int(circulating_supply/total_supply * 100)))
         print()
 
+    choice == input('Again? (y/n): ')    
+
     if choice == 'n':
         break
 
-    choice == input('Again? (y/n): ')
+    
 
     
 
