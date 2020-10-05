@@ -21,30 +21,38 @@ When the user accesses the app, they will enter the main menu. At this point the
 ```
 This terminal application makes frequent requests to the alternative.me/crypto/api API. The information is updated every five minutes and therefore can be assumed to be reliable. 
 
+The application is structured to have the menu page as the point of access for the user which can then access the other files that contain the features of the application. 
+
 The terminal application is quite simple as to what it does. The majority of the application is sending json requests to the corresponding URL to access the necessary information. The information is then received as parse data, which the application must engage with and navigate to ascertain the sought after information. The application then restructures the information using the array structure to re-format it into a more easily digestable format for the user. 
 
 The porfolio section of the application offers an additional component as it is linked to the porfolio.md file which determines what currencies are to be tracked within the portfolio feature. The porfolio like the other sections of the app continuously engages with the API as it must update the hourly, daily and weekly figures. 
 
+As stated in the requirements.txt page, the following external packages are utilised:
+colorama 0.4.3 to have the colour effect on the porfolio table
+prettytable 0.7.3 to have the asset data from portfolio.md to be structured within a table
+
+The Terminal Application uses the following standard libraries:
+json: to handle the API response
+unittest: for automatic testing/continuous integration
+
 ## Flowchart
 ![Flowchart](/docs/Flowchart.PNG)
 
+## Installation and use
+Terminal Application was written using Python3.8 which can be installed using:
+```
+apt-get install python 3.8
+```
 
-The Solution Must:
-- describe how input and output will be handled
--detail how the solution will be structured in terms of classes, functions and other entities
-- illustrate how the algorithm will function
-- list the Python dependencies required and state what each will be used for (this includes Python standard libraries as well as third-party packages)
+To install the required packages to run this app, use the command:
+```
+pip install -r requirements.txt
+```
 
-It is strongly suggested that you have an educator review the draft of this question before you move on to any of the other requirements. If you solution does not cover the points above sufficiently or does not have sufficient detail or complexity, the mark awarded may be limited.
-
-Note: “two way flow of communication” is very open-ended concept and requires you to present an algorithmic solution that can be implemented in Python. For example, a two-way chat application would have an algorithm that facilitates sending and receiving of messages between two users, a multiplayer game requires an algorithm to handle the way game state is tracked and communicated between clients, a file sharing application requires an algorithm to direct the handling of packets or chunks of files.
-
-
+From the root of the repository the app can be run using:
+```
+python3.8 src/main.py
+```
 
 
-# Description
-Welcome to an exciting new Cryptocurrency information platform! 
-My platform uses the public API key from https://alternative.me/crypto/api/#terms 
-For this API is public, it is not necessary to create an account. This API was created after coinmarketcap announced that they were ceasing their public API. 
 
-From experience the API from https://alternative.me is easier to digest and navigate compared to the updated Coinmarketcap API documentation. 
