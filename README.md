@@ -36,7 +36,7 @@ json: to handle the API response
 unittest: for automatic testing/continuous integration
 
 ## Flowchart
-![Flowchart](/docs/Flowchart.PNG)
+![Flowchart](/docs/Flowchart.png)
 
 ## Installation and use
 Terminal Application was written using Python3.8 which can be installed using:
